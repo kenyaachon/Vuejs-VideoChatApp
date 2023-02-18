@@ -1,0 +1,10 @@
+services:
+  videochat:
+    build:
+      context: .
+    ports:
+      - 5173:5173
+    volumes:
+      - ./src:/app/src
+      - ./e2e:/app/e2e
+
