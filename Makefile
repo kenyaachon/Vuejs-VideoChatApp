@@ -3,3 +3,6 @@ build:
 
 run:
 	docker compose up videochat
+
+stop:
+	docker compose stop
