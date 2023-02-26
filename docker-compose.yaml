@@ -5,6 +5,7 @@ services:
     ports:
       - 5173:5173
     volumes:
+      # - ./node_modules:/app/node_modules
       - ./src:/app/src
       - ./e2e:/app/e2e
 
