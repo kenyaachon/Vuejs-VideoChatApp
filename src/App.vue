@@ -1,23 +1,22 @@
-<script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue"
-import TheWelcome from "./components/TheWelcome.vue"
+<script lang="ts">
+import Navigation from "@/components/Navigation.vue"
+
+export default {
+  components: {
+    Navigation
+  }
+}
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <div id="app">
+    <Navigation />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it! Oh Yeah baby" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+    <router-view />
+  </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 $primary: #5f2882;
-@import "node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap/scss/bootstrap";
 </style>
