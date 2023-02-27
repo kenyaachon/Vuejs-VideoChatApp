@@ -21,6 +21,7 @@
     "firebaseui": "^6.0.2",
     "jquery": "^3.6.3",
     "vue": "^3.2.45",
+    "vue-router": "^4.1.6",
     "vue-webrtc": "^3.0.1"
   },
   "devDependencies": {
