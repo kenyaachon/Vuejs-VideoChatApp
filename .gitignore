@@ -1,3 +1,6 @@
+# credentials
+src/secrets.ts
+
 # Logs
 logs
 *.log
