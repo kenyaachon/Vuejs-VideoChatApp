@@ -7,7 +7,7 @@ import Login from "./components/Login.vue"
 import "./assets/main.css"
 
 const routes = [
-  { path: "/", name: "Home", component: Home },
+  { path: "/", name: "Home", component: Home, props: true },
   { path: "/login", name: "Login", component: Login }
 ]
 
