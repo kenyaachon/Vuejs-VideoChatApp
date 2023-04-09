@@ -1,0 +1,23 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+      - id: forbid-new-submodules
+      - id: check-case-conflict
+      - id: requirements-txt-fixer
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: debug-statements
+
+  - repo: local
+    hooks:
+      - id: prettier
+        name: prettier
+        entry: "npm run prettier"
+        language: node
+        types_or: [json, ts, tsx, javascript, jsx, css]
+      - id: eslint
+        name: eslint
+        entry: "npm run lint"
+        language: node
+        types_or: [ts, tsx, javascript, jsx]
