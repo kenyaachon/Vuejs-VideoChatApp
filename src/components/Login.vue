@@ -11,7 +11,7 @@
               <div class="card-body form-text">
                 <h3 class="font-weight-light mb-3">Log in</h3>
                 <section class="form-group">
-                  <div class="col-12 alert alert-danger px-3" v-if="error">error</div>
+                  <div class="col-12 alert alert-danger px-3" v-if="error">{{ error }}</div>
                   <label class="form-control-label sr-only" for="Email">Email</label>
                   <input
                     required
@@ -19,10 +19,17 @@
                     type="email"
                     id="email"
                     placeholder="Email"
+                    v-model="email"
                   />
                 </section>
                 <section class="form-group">
-                  <input required class="form-control" type="password" placeholder="Password" />
+                  <input
+                    required
+                    class="form-control"
+                    type="password"
+                    placeholder="Password"
+                    v-model="password"
+                  />
                 </section>
                 <div class="form-group text-right mb-0">
                   <button class="btn btn-primary" type="submit">Log in</button>
@@ -37,10 +44,37 @@
 </template>
 
 <script lang="ts">
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+
+const auth = getAuth()
 export default {
   name: "LoginVue",
+  data() {
+    return {
+      email: "",
+      password: "",
+      error: null
+    }
+  },
   methods: {
-    login(event) {}
+    login() {
+      const info = {
+        email: this.email,
+        password: this.password
+      }
+
+      signInWithEmailAndPassword(auth, info.email, info.password)
+        .then(userCredential => {
+          // Signed in
+          console.log("this user has been signed in", userCredential)
+          this.$router.push("/")
+        })
+        .catch(error => {
+          const errorCode = error.code
+          const errorMessage = error.message
+          console.error("failed to login in user", errorCode, errorMessage)
+        })
+    }
   }
 }
 </script>
