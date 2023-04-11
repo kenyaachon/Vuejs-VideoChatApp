@@ -3,12 +3,14 @@ import { createRouter, createWebHistory } from "vue-router"
 import App from "./App.vue"
 import Home from "./components/Home.vue"
 import Login from "./components/Login.vue"
+import RegisterView from "./components/Register.vue"
 
 import "./assets/main.css"
 
 const routes = [
   { path: "/", name: "Home", component: Home, props: true },
-  { path: "/login", name: "Login", component: Login }
+  { path: "/login", name: "Login", component: Login },
+  { path: "/register", name: "Register", component: RegisterView }
 ]
 
 // Create the router instance and pass the `routes` option

@@ -39,6 +39,10 @@
           </div>
         </div>
       </div>
+      <p class="text-center mt-2">
+        or
+        <router-link to="/register">register</router-link>
+      </p>
     </form>
   </div>
 </template>
@@ -73,6 +77,7 @@ export default {
           const errorCode = error.code
           const errorMessage = error.message
           console.error("failed to login in user", errorCode, errorMessage)
+          this.error = error.message
         })
     }
   }
