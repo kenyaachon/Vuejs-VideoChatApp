@@ -71,7 +71,8 @@ export default {
         .then(userCredential => {
           // Signed in
           console.log("this user has been signed in", userCredential)
-          this.$router.push("/")
+          this.$store.dispatch("loginUser", userCredential.user.displayName)
+          this.$router.replace("/")
         })
         .catch(error => {
           const errorCode = error.code

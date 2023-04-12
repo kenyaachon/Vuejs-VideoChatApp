@@ -4,6 +4,7 @@ import App from "./App.vue"
 import Home from "./components/Home.vue"
 import Login from "./components/Login.vue"
 import RegisterView from "./components/Register.vue"
+import { store } from "./store"
 
 import "./assets/main.css"
 
@@ -34,5 +35,6 @@ const router = createRouter({
 const app = createApp(App)
 
 app.use(router)
+app.use(store)
 // app.use(vuetify)
 app.mount("#app")

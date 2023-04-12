@@ -94,7 +94,8 @@ export default {
             const user = userCredential.user
             // ...
             console.log("the user logged in", user)
-            this.$router.push("/")
+            this.$store.dispatch("loginUser", userCredential.user.displayName)
+            this.$router.replace("/")
           })
           .catch(error => {
             const errorCode = error.code

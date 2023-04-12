@@ -26,7 +26,7 @@ export default {
 
 <template>
   <div id="app">
-    <Navigation :user="user" />
+    <Navigation />
 
     <router-view :user="user" />
   </div>
