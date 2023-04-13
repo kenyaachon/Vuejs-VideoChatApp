@@ -9,8 +9,14 @@
           </span>
         </router-link>
         <div class="navbar-nav ml-auto">
-          <router-link to="/login" class="nav-item nav-link">log in</router-link>
-          <router-link to="/register" class="nav-item nav-link">register</router-link>
+          <router-link v-if="isUserLoggedIn" to="/login" class="nav-item nav-link"
+            >log in</router-link
+          >
+          <router-link v-if="isUserLoggedIn" to="/register" class="nav-item nav-link"
+            >register</router-link
+          >
+
+          <button v-else class="btn btn-primary" type="submit" @click="logoutUser">logout</button>
         </div>
       </div>
     </nav>
@@ -18,18 +24,40 @@
 </template>
 
 <script lang="ts">
+import { getAuth, signOut } from "firebase/auth"
 export default {
   name: "NavigationVue",
   // props: {
   //   user: String
   // },
   data() {
-    return {}
+    return {
+      user: null
+    }
   },
   computed: {
     currentUser() {
       console.log("this is the current user", this.$store.state.user)
       return this.$store.state.user
+    },
+    isUserLoggedIn() {
+      console.log("current value of the computed", this.$store.state.user)
+      return this.$store.state.user === null ? false : true
+    }
+  },
+  methods: {
+    logoutUser() {
+      const auth = getAuth()
+
+      signOut(auth)
+        .then(() => {
+          console.log("signing out user", this.$store.state.user)
+          this.$store.dispatch("logoutUser")
+          // this.$router.push("/login")
+        })
+        .catch(error => {
+          console.error("error occured while signing out user", error)
+        })
     }
   }
 }

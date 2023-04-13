@@ -3,7 +3,7 @@ import { Store } from "vuex"
 declare module "@vue/runtime-core" {
   // our own store store state
   interface State {
-    user: string
+    user: string | null
   }
 
   // provide typings for `this.$store

@@ -1,21 +1,19 @@
 import { createStore } from "vuex"
 
 export interface State {
-  user: string
+  user: string | null
 }
 
 export const store = createStore<State>({
-  state() {
-    return {
-      user: ""
-    }
+  state: {
+    user: null
   },
   mutations: {
     login(state, user) {
       state.user = user
     },
     logout(state) {
-      state.user = ""
+      state.user = null
     }
   },
   actions: {

@@ -67,7 +67,7 @@
 </template>
 
 <script lang="ts">
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
 const auth = getAuth()
 
 export default {
@@ -85,7 +85,8 @@ export default {
     register() {
       const info = {
         email: this.email,
-        password: this.password
+        password: this.password,
+        displayName: this.displayName
       }
       if (this.password === this.passwordTwo) {
         createUserWithEmailAndPassword(auth, info.email, info.password)
@@ -94,8 +95,11 @@ export default {
             const user = userCredential.user
             // ...
             console.log("the user logged in", user)
-            this.$store.dispatch("loginUser", userCredential.user.displayName)
-            this.$router.replace("/")
+
+            updateProfile(user, { displayName: info.displayName }).then(() => {
+              this.$store.dispatch("loginUser", info.displayName)
+              this.$router.replace("/")
+            })
           })
           .catch(error => {
             const errorCode = error.code
