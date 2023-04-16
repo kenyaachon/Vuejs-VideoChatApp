@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <router-link class="navbar-brand" to="/">
           <span class="h2 pr-1">Video Chat</span>
-          <span class="navbar-text small">
+          <span class="navbar-text small" v-if="!isUserLoggedIn">
             : Hi <span class="font-weight-bold text-white"> {{ currentUser }}</span>
           </span>
         </router-link>
@@ -25,25 +25,21 @@
 
 <script lang="ts">
 import { getAuth, signOut } from "firebase/auth"
+import { mapGetters } from "vuex"
 export default {
   name: "NavigationVue",
   // props: {
   //   user: String
   // },
   data() {
-    return {
-      user: null
-    }
+    return {}
   },
   computed: {
     currentUser() {
       console.log("this is the current user", this.$store.state.user)
       return this.$store.state.user
     },
-    isUserLoggedIn() {
-      console.log("current value of the computed", this.$store.state.user)
-      return this.$store.state.user === null ? false : true
-    }
+    ...mapGetters(["isUserLoggedIn"])
   },
   methods: {
     logoutUser() {
@@ -53,7 +49,7 @@ export default {
         .then(() => {
           console.log("signing out user", this.$store.state.user)
           this.$store.dispatch("logoutUser")
-          // this.$router.push("/login")
+          // this.$router.replace("/login")
         })
         .catch(error => {
           console.error("error occured while signing out user", error)
