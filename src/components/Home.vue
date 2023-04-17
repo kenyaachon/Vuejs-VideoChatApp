@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-3">
+  <!-- <div class="mt-3">
     <div class="text-center" v-if="!currentUser">
       Welcome <span class="font-weight-bold text-info"> {{ currentUser }}</span>
     </div>
@@ -18,6 +18,26 @@
         </div>
       </div>
     </div>
+  </div> -->
+  <div>
+    <v-container>
+      <v-card class="mx-auto" min-width="344" variant="outlined">
+        <v-card-item>
+          <h4 class="display-4 text-primary mb-2">Video Chat</h4>
+          <p class="lead">
+            This app uses Firebase for real time communication and WebRTC to create video chats
+            between multiple users, allowing you to create rooms for your meetings and invite
+            attendes.
+          </p>
+        </v-card-item>
+
+        <v-card-item class="text-center">
+          <router-link class="btn btn-outline-primary mr-2" to="/login">Log In</router-link>
+
+          <router-link class="btn btn-outline-primary mr-2" to="/register">Register</router-link>
+        </v-card-item>
+      </v-card>
+    </v-container>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!-- <div>
     <nav class="navbar navbar-expand bg-primary navbar-dark">
       <div class="container-fluid">
         <router-link class="navbar-brand" to="/">
@@ -20,7 +20,30 @@
         </div>
       </div>
     </nav>
-  </div>
+  </div> -->
+  <v-card color="teal-darken-4" class="mx-auto navbar navbar-expand" max-width="448">
+    <v-layout>
+      <v-app-bar>
+        <router-link class="navbar-brand" to="/">
+          <span class="h2 pr-1">Video Chat</span>
+          <span class="navbar-text small" v-if="!isUserLoggedIn">
+            : Hi <span class="font-weight-bold text-white"> {{ currentUser }}</span>
+          </span>
+        </router-link>
+
+        <div class="navbar-nav ml-auto">
+          <router-link v-if="isUserLoggedIn" to="/login" class="nav-item nav-link"
+            >log in</router-link
+          >
+          <router-link v-if="isUserLoggedIn" to="/register" class="nav-item nav-link"
+            >register</router-link
+          >
+
+          <button v-else class="btn btn-primary" type="submit" @click="logoutUser">logout</button>
+        </div>
+      </v-app-bar>
+    </v-layout>
+  </v-card>
 </template>
 
 <script lang="ts">
