@@ -4,6 +4,7 @@ import App from "./App.vue"
 import Home from "./components/Home.vue"
 import Login from "./components/Login.vue"
 import RegisterView from "./components/Register.vue"
+import RoomView from "./components/Room.vue"
 import { store } from "./store"
 
 import "./assets/main.css"
@@ -11,7 +12,8 @@ import "./assets/main.css"
 const routes = [
   { path: "/", name: "Home", component: Home, props: true },
   { path: "/login", name: "Login", component: Login },
-  { path: "/register", name: "Register", component: RegisterView }
+  { path: "/register", name: "Register", component: RegisterView },
+  { path: "/rooms", name: "Rooms", components: RoomView }
 ]
 
 // Create the router instance and pass the `routes` option

@@ -21,7 +21,12 @@
       </div>
     </nav>
   </div> -->
-  <v-card color="teal-darken-4" class="mx-auto navbar navbar-expand" max-width="448">
+  <v-card
+    variant="outlined"
+    color="teal-darken-4"
+    class="mx-auto navbar navbar-expand"
+    max-width="448"
+  >
     <v-layout>
       <v-app-bar>
         <router-link class="navbar-brand" to="/">
