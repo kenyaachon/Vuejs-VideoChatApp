@@ -1,8 +1,5 @@
 <template>
-  <!-- <div class="login">
-    <h1>Login Page</h1>
-  </div> -->
-  <div>
+  <!-- <div>
     <form class="mt-3" @submit.prevent="login">
       <div class="container">
         <div class="row justify-content-center">
@@ -44,11 +41,39 @@
         <router-link to="/register">register</router-link>
       </p>
     </form>
-  </div>
+  </div> -->
+  <v-card class="mx-auto" variant="outlined" min-width="455" elevation="12">
+    <v-card-title> Log In</v-card-title>
+    <v-container>
+      <v-form @submit.prevent="login">
+        <v-text-field
+          required
+          label="Email"
+          v-model="email"
+          :error-messages="v$.email.$errors.map(e => e.$message)"
+          @input="v$.email.$touch"
+          @blur="v$.email.$touch"
+        >
+        </v-text-field>
+        <v-text-field
+          required
+          label="Password"
+          v-model="password"
+          :error-messages="v$.password.$errors.map(e => e.$message)"
+          @input="v$.password.$touch"
+          @blur="v$.password.$touch"
+        >
+        </v-text-field>
+        <v-btn class="me-4" type="submit"> Log in </v-btn>
+      </v-form>
+    </v-container>
+  </v-card>
 </template>
 
 <script lang="ts">
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import { useVuelidate } from "@vuelidate/core"
+import { required, email } from "@vuelidate/validators"
 
 const auth = getAuth()
 export default {
@@ -81,12 +106,27 @@ export default {
           this.error = error.message
         })
     }
+  },
+  setup() {
+    return {
+      v$: useVuelidate()
+    }
+  },
+  validations() {
+    return {
+      email: { required, email },
+      password: { required }
+    }
   }
 }
 </script>
 
-<style>
+<style scoped>
 .form-text {
   color: black;
 }
+
+/* .v-card {
+  background-color: grey;
+} */
 </style>

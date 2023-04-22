@@ -25,11 +25,18 @@ export default {
 </script>
 
 <template>
-  <div id="app">
+  <!-- <div id="app">
     <Navigation />
 
     <router-view :user="user" />
-  </div>
+  </div> -->
+  <v-layout>
+    <Navigation />
+
+    <v-main>
+      <router-view :user="user" />
+    </v-main>
+  </v-layout>
 </template>
 
 <style lang="scss">

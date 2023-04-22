@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!-- <div>
     <form class="mt-3" @submit.prevent="register">
       <div class="container">
         <div class="row justify-content-center">
@@ -63,11 +63,57 @@
         <router-link to="/login">log in</router-link>
       </p>
     </form>
-  </div>
+  </div> -->
+  <v-card class="mx-auto" variant="outlined" min-width="455" elevation="12">
+    <v-card-title> Register New User</v-card-title>
+    <v-container>
+      <v-form @submit.prevent="register">
+        <v-text-field
+          required
+          label="Display Name"
+          v-model="displayName"
+          :error-messages="v$.displayName.$errors.map(e => e.$message)"
+          @input="v$.displayName.$touch"
+          @blur="v$.displayName.$touch"
+        >
+        </v-text-field>
+        <v-text-field
+          required
+          label="Email"
+          v-model="email"
+          :error-messages="v$.email.$errors.map(e => e.$message)"
+          @input="v$.email.$touch"
+          @blur="v$.email.$touch"
+        >
+        </v-text-field>
+        <v-text-field
+          required
+          label="Password"
+          v-model="password"
+          :error-messages="v$.password.$errors.map(e => e.$message)"
+          @input="v$.password.$touch"
+          @blur="v$.password.$touch"
+        >
+        </v-text-field>
+        <v-text-field
+          required
+          label="Enter Password Again"
+          v-model="passwordTwo"
+          :error-messages="v$.passwordTwo.$errors.map(e => e.$message)"
+          @input="v$.passwordTwo.$touch"
+          @blur="v$.passwordTwo.$touch"
+        >
+        </v-text-field>
+        <v-btn class="me-4" type="submit"> Register </v-btn>
+      </v-form>
+    </v-container>
+  </v-card>
 </template>
 
 <script lang="ts">
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
+import { useVuelidate } from "@vuelidate/core"
+import { required, email, sameAs, and, minLength } from "@vuelidate/validators"
 const auth = getAuth()
 
 export default {
@@ -112,6 +158,23 @@ export default {
       } else {
         this.error = "Passwords do not match"
       }
+    }
+  },
+  setup() {
+    return {
+      v$: useVuelidate()
+    }
+  },
+  validations() {
+    return {
+      email: { required, email },
+      password: {
+        and: and(required, minLength(10))
+      },
+      passwordTwo: {
+        sameAs: sameAs(this.password)
+      },
+      displayName: { required }
     }
   }
 }
