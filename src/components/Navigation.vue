@@ -23,12 +23,14 @@
   </div> -->
   <v-card class="mx-auto navbar navbar-expand" max-width="848">
     <v-app-bar color="deep-purple-darken-1" elevation="10">
-      <router-link class="navbar-brand" to="/">
-        <span class="h2 pr-1">Video Chat</span>
-        <span class="navbar-text small" v-if="!isUserLoggedIn">
-          : Hi <span class="font-weight-bold text-white"> {{ currentUser }}</span>
-        </span>
-      </router-link>
+      <v-app-bar-title>
+        <router-link class="navbar-brand" to="/">
+          <span class="h2 pr-1">Video Chat</span>
+          <span class="navbar-text small" v-if="!isUserLoggedIn">
+            : Hi <span class="font-weight-bold text-white"> {{ currentUser }}</span>
+          </span>
+        </router-link>
+      </v-app-bar-title>
 
       <div class="navbar-nav ml-auto">
         <router-link v-if="isUserLoggedIn" to="/login" class="nav-item nav-link"
