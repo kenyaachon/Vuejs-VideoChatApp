@@ -32,16 +32,24 @@
         </router-link>
       </v-app-bar-title>
 
-      <div class="navbar-nav ml-auto">
-        <router-link v-if="isUserLoggedIn" to="/login" class="nav-item nav-link"
-          >log in</router-link
-        >
-        <router-link v-if="isUserLoggedIn" to="/register" class="nav-item nav-link"
-          >register</router-link
-        >
+      <v-btn-group v-if="isUserLoggedIn">
+        <v-btn>
+          <router-link to="/login" class="nav-item nav-link">log in</router-link>
+        </v-btn>
 
-        <button v-else class="btn btn-primary" type="submit" @click="logoutUser">logout</button>
-      </div>
+        <v-spacer></v-spacer>
+
+        <v-btn>
+          <router-link to="/register" class="nav-item nav-link">register</router-link>
+        </v-btn>
+      </v-btn-group>
+
+      <v-btn-group v-else>
+        <v-btn>
+          <router-link to="/rooms" class="nav-item nav-link">Rooms</router-link>
+        </v-btn>
+        <v-btn type="submit" @click="logoutUser"> logout </v-btn>
+      </v-btn-group>
     </v-app-bar>
   </v-card>
 </template>
