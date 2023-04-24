@@ -12,6 +12,8 @@
         <v-text-field v-model="roomName" label="Room Name"></v-text-field>
         <v-btn @click="addRoom" class="ma-2" color="blue" icon="mdi-home"><h2>+</h2></v-btn>
       </v-row>
+      <v-alert v-if="showSuccess" color="success" closable title="status"> </v-alert>
+      <v-alert v-if="showError" color="error" closable title="status"> </v-alert>
     </v-container>
   </v-card>
 </template>
@@ -24,7 +26,9 @@ export default {
   name: "RoomView",
   data() {
     return {
-      roomName: null
+      roomName: null,
+      isSuccess: false,
+      isError: false
     }
   },
   methods: {
@@ -34,6 +38,21 @@ export default {
         name: this.roomName,
         createdAt: serverTimestamp()
       })
+        .then(() => {
+          this.isSuccess = true
+        })
+        .catch(error => {
+          console.log("error while adding the room", error)
+          this.isError = true
+        })
+    }
+  },
+  computed: {
+    showSuccess() {
+      return this.isSuccess
+    },
+    showError() {
+      return this.isError
     }
   }
 }
