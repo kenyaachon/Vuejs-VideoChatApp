@@ -1,6 +1,6 @@
 <template>
   <v-card class="mx-auto" variant="outlined" min-width="455" elevation="12">
-    <v-card-title> Log In</v-card-title>
+    <v-card-title class="text-center"> Log In</v-card-title>
     <v-container>
       <v-form @submit.prevent="login">
         <v-text-field
@@ -15,6 +15,7 @@
         <v-text-field
           required
           label="Password"
+          type="password"
           v-model="password"
           :error-messages="v$.password.$errors.map(e => e.$message)"
           @input="v$.password.$touch"
@@ -53,7 +54,8 @@ export default {
         .then(userCredential => {
           // Signed in
           console.log("this user has been signed in", userCredential)
-          this.$store.dispatch("loginUser", userCredential.user.displayName)
+          // this.$store.dispatch("loginUser", userCredential.user.displayName)
+          this.$store.dispatch("loginUser", userCredential.user)
           this.$router.replace("/")
         })
         .catch(error => {

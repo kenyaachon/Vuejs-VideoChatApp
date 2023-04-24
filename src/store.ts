@@ -1,7 +1,8 @@
+import type { User } from "firebase/auth"
 import { createStore } from "vuex"
 
 export interface State {
-  user: string | null
+  user: User | null
 }
 
 export const store = createStore<State>({
@@ -22,7 +23,7 @@ export const store = createStore<State>({
     }
   },
   actions: {
-    async loginUser({ commit }, userData: string) {
+    async loginUser({ commit }, userData: User) {
       console.log("the payload being passed", userData)
       commit("login", userData)
     },

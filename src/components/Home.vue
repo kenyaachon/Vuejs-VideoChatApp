@@ -1,7 +1,7 @@
 <template>
   <v-card class="mx-auto" min-width="344" min-height="200" variant="outlined" elevation="12">
     <v-card-item>
-      <h4 class="display-4 text-primary mb-2">Video Chat</h4>
+      <h4 class="display-4 text-primary mb-2 text-center">Video Chat</h4>
       <p class="lead">
         This app uses Firebase for real time communication and WebRTC to create video chats between
         multiple users, allowing you to create rooms for your meetings and invite attendes.
@@ -25,7 +25,7 @@ export default {
   computed: {
     currentUser() {
       console.log("this is the current user", this.$store.state.user)
-      return this.$store.state.user
+      return this.$store.state.user?.displayName
     }
   }
 }

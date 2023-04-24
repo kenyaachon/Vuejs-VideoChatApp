@@ -13,7 +13,7 @@ const routes = [
   { path: "/", name: "Home", component: Home, props: true },
   { path: "/login", name: "Login", component: Login },
   { path: "/register", name: "Register", component: RegisterView },
-  { path: "/rooms", name: "Rooms", components: RoomView }
+  { path: "/rooms", name: "Rooms", component: RoomView }
 ]
 
 // Create the router instance and pass the `routes` option
@@ -28,10 +28,18 @@ import "vuetify/styles"
 import { createVuetify } from "vuetify"
 import * as components from "vuetify/components"
 import * as directives from "vuetify/directives"
+import { aliases, mdi } from "vuetify/iconsets/mdi"
 
 const vuetify = createVuetify({
   components,
-  directives
+  directives,
+  icons: {
+    defaultSet: "mdi",
+    aliases,
+    sets: {
+      mdi
+    }
+  }
 })
 
 const app = createApp(App)

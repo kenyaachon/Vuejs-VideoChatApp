@@ -1,6 +1,6 @@
 <template>
   <v-card class="mx-auto" variant="outlined" min-width="455" elevation="12">
-    <v-card-title> Register New User</v-card-title>
+    <v-card-title class="text-center"> Register New User</v-card-title>
     <v-container>
       <v-form @submit.prevent="register">
         <v-text-field
@@ -78,7 +78,7 @@ export default {
             console.log("the user logged in", user)
 
             updateProfile(user, { displayName: info.displayName }).then(() => {
-              this.$store.dispatch("loginUser", info.displayName)
+              this.$store.dispatch("loginUser", user)
               this.$router.replace("/")
             })
           })

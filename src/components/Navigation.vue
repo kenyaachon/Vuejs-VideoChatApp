@@ -68,7 +68,7 @@ export default {
   computed: {
     currentUser() {
       console.log("this is the current user", this.$store.state.user)
-      return this.$store.state.user
+      return this.$store.state.user?.displayName
     },
     ...mapGetters(["isUserLoggedIn"])
   },
@@ -80,7 +80,7 @@ export default {
         .then(() => {
           console.log("signing out user", this.$store.state.user)
           this.$store.dispatch("logoutUser")
-          // this.$router.replace("/login")
+          this.$router.replace("/login")
         })
         .catch(error => {
           console.error("error occured while signing out user", error)

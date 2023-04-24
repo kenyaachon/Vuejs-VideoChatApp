@@ -25,11 +25,6 @@ export default {
 </script>
 
 <template>
-  <!-- <div id="app">
-    <Navigation />
-
-    <router-view :user="user" />
-  </div> -->
   <v-layout>
     <Navigation />
 
